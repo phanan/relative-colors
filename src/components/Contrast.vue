@@ -10,7 +10,7 @@
     </Instruction>
 
     <div class="h-40 flex gap-5">
-      <div class="sample primary" v-if="isDark">
+      <div v-if="isDark" class="sample primary">
         <div class="space-y-4 text-center">
           <LegendText>oklch(from {{ primary }} calc(l + .6) c h)</LegendText>
           <p class="from-darker">
@@ -18,7 +18,7 @@
           </p>
         </div>
       </div>
-      <div class="sample primary" v-else>
+      <div v-else class="sample primary">
         <div class="space-y-4 text-center">
           <LegendText>oklch(from {{ primary }} calc(l - .6) c h)</LegendText>
           <p class="from-lighter">

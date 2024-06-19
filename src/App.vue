@@ -1,30 +1,28 @@
 <template>
-  <div class="h-full w-full p-10">
-    <div class="mb-4 flex gap-4">
-      <label class="inline-flex items-center gap-1">
-        <input type="color" v-model="primary" />
-        <span class="font-mono ml-2">{{ primary }}</span>
-      </label>
-      <label class="inline-flex items-center gap-1">
-        <input type="checkbox" v-model="showLegend" /> Legends pls
-      </label>
-    </div>
-
-    <div
-      class="space-x-1 pl-4 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-gray-400"
-    >
-      <button @click="component = 'basics'" :class="component === 'basics' && 'active'">The Basics</button>
-      <button @click="component = 'brightness'" :class="component === 'brightness' && 'active'">
+  <div class="p-10">
+    <div class="space-x-1 pl-4 relative z-10">
+      <button :class="component === 'basics' && 'active'" @click="component = 'basics'">The Basics</button>
+      <button :class="component === 'brightness' && 'active'" @click="component = 'brightness'">
         Brightness & Opacity
       </button>
-      <button @click="component = 'inversion'" :class="component === 'inversion' && 'active'">
+      <button :class="component === 'inversion' && 'active'" @click="component = 'inversion'">
         Inversion & Complement
       </button>
-      <button @click="component = 'contrast'" :class="component === 'contrast' && 'active'">Contrast</button>
-      <button @click="component = 'palettes'" :class="component === 'palettes' && 'active'">Palettes</button>
+      <button :class="component === 'contrast' && 'active'" @click="component = 'contrast'">Contrast</button>
+      <button :class="component === 'palettes' && 'active'" @click="component = 'palettes'">Palettes</button>
     </div>
 
-    <div class="p-4 border border-t-0 border-gray-400" v-if="component">
+    <div class="p-4 border border-gray-400 -mt-px rounded">
+      <div v-if="component" class="mb-4 flex gap-4">
+        <label class="inline-flex items-center gap-1">
+          <input v-model="primary" type="color" />
+          <span class="font-mono ml-2">{{ primary }}</span>
+        </label>
+        <label class="inline-flex items-center gap-1">
+          <input v-model="showLegend" type="checkbox" /> Legends pls
+        </label>
+      </div>
+
       <Basics v-if="component === 'basics'" />
       <Brightness v-if="component === 'brightness'" />
       <Inversion v-if="component === 'inversion'" />
@@ -52,15 +50,11 @@ provide('show-legend', showLegend)
 </script>
 
 <style scoped>
-:root {
-  --primary-color: v-bind(primary);
-}
-
 button {
-  @apply relative text-gray-700 px-3 py-1 border border-b-transparent border-gray-400 rounded-t bg-gray-200 transition;
+  @apply relative text-gray-700 px-3 py-1 border border-gray-400 rounded-t bg-gray-200 transition;
 
   &.active {
-    @apply bg-white text-gray-950 border-b-white z-10;
+    @apply bg-white text-gray-950 border-b-white;
   }
 }
 </style>

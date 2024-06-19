@@ -7,7 +7,7 @@
         <h4 class="text-lg mb-2">
           <a href="https://www.linearity.io/blog/monochromatic-colors/">Monochromatic</a>
           <label class="ml-4 text-base">
-            <input type="checkbox" v-model="hueRotation" /> With slight hue rotation
+            <input v-model="hueRotation" type="checkbox" /> With slight hue rotation
           </label>
         </h4>
         <Instruction>
