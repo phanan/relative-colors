@@ -10,19 +10,19 @@
     </Instruction>
 
     <div class="h-40 flex gap-5">
-      <div class="sample brand" v-if="isDark">
+      <div class="sample primary" v-if="isDark">
         <div class="space-y-4 text-center">
-          <LegendText>oklch(from {{ brand }} calc(l + .6) c h)</LegendText>
+          <LegendText>oklch(from {{ primary }} calc(l + .6) c h)</LegendText>
           <p class="from-darker">
-            This text's color is derived from the brand color by INCREASING the lightness by 60%.
+            This text's color is derived from the primary color by INCREASING the lightness by 60%.
           </p>
         </div>
       </div>
-      <div class="sample brand" v-else>
+      <div class="sample primary" v-else>
         <div class="space-y-4 text-center">
-          <LegendText>oklch(from {{ brand }} calc(l - .6) c h)</LegendText>
+          <LegendText>oklch(from {{ primary }} calc(l - .6) c h)</LegendText>
           <p class="from-lighter">
-            This text's color is derived from the brand color by DECREASING the lightness by 60%.
+            This text's color is derived from the primary color by DECREASING the lightness by 60%.
           </p>
         </div>
       </div>
@@ -37,20 +37,20 @@ import { useColor } from '@/composables/useColor'
 import LegendText from '@/components/LegendText.vue'
 import Instruction from '@/components/Instruction.vue'
 
-const brand = inject<Ref<string>>('brand')!
-const { isDark } = useColor(brand)
+const primary = inject<Ref<string>>('primary')!
+const { isDark } = useColor(primary)
 </script>
 
 <style scoped>
-.brand {
-  background: v-bind(brand);
+.primary {
+  background: v-bind(primary);
 }
 
 .from-darker {
-  color: oklch(from v-bind(brand) calc(l + .6) c h);
+  color: oklch(from v-bind(primary) calc(l + .6) c h);
 }
 
 .from-lighter {
-  color: oklch(from v-bind(brand) calc(l - .6) c h);
+  color: oklch(from v-bind(primary) calc(l - .6) c h);
 }
 </style>

@@ -8,14 +8,14 @@
     </Instruction>
 
     <div class="h-40 flex gap-5">
-      <div class="sample brand">
-        <LegendText>{{ brand }}</LegendText>
+      <div class="sample primary">
+        <LegendText>{{ primary }}</LegendText>
       </div>
       <div class="sample inverted">
-        <LegendText>rgb(from {{ brand }} calc(255 - r) calc(255 - g) calc(255 - b))</LegendText>
+        <LegendText>rgb(from {{ primary }} calc(255 - r) calc(255 - g) calc(255 - b))</LegendText>
       </div>
       <div class="sample complement">
-        <LegendText>hsl(from {{ brand }} calc(h + 180) s l)</LegendText>
+        <LegendText>hsl(from {{ primary }} calc(h + 180) s l)</LegendText>
       </div>
     </div>
   </div>
@@ -26,19 +26,19 @@ import { inject, type Ref } from 'vue'
 import LegendText from '@/components/LegendText.vue'
 import Instruction from '@/components/Instruction.vue'
 
-const brand = inject<Ref<string>>('brand')
+const primary = inject<Ref<string>>('primary')
 </script>
 
 <style scoped>
-.brand {
-  background: v-bind(brand);
+.primary {
+  background: v-bind(primary);
 }
 
 .inverted {
-  background: rgb(from v-bind(brand) calc(255 - r) calc(255 - g) calc(255 - b));
+  background: rgb(from v-bind(primary) calc(255 - r) calc(255 - g) calc(255 - b));
 }
 
 .complement {
-  background: hsl(from v-bind(brand) calc(h + 180) s l);
+  background: hsl(from v-bind(primary) calc(h + 180) s l);
 }
 </style>

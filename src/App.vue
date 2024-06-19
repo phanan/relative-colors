@@ -2,8 +2,8 @@
   <div class="h-full w-full p-10">
     <div class="mb-4 flex gap-4">
       <label class="inline-flex items-center gap-1">
-        <input type="color" v-model="brand" />
-        <span class="font-mono ml-2">{{ brand }}</span>
+        <input type="color" v-model="primary" />
+        <span class="font-mono ml-2">{{ primary }}</span>
       </label>
       <label class="inline-flex items-center gap-1">
         <input type="checkbox" v-model="showLegend" /> Legends pls
@@ -44,16 +44,16 @@ import Contrast from '@/components/Contrast.vue'
 import Palettes from '@/components/Palettes.vue'
 
 const component = ref<'basics' | 'brightness' | 'inversion' | 'contrast' | 'palettes' | null>(null)
-const brand = ref('#ffffff')
+const primary = ref('#ffffff')
 const showLegend = ref(false)
 
-provide('brand', brand)
+provide('primary', primary)
 provide('show-legend', showLegend)
 </script>
 
 <style scoped>
 :root {
-  --brand-color: v-bind(brand);
+  --primary-color: v-bind(primary);
 }
 
 button {

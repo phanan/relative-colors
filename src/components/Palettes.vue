@@ -15,14 +15,7 @@
           If hue rotation is enabled, the hue is also slightly rotated.
         </Instruction>
         <div class="grid grid-rows-11 flex-1">
-          <div
-            v-for="i in 11"
-            :key="i"
-            :style="{  background: monochromaticBgr(i, hueRotation) }"
-            class="flex p-2 justify-center items-center"
-          >
-            <LegendText>{{ monochromaticBgr(i, hueRotation) }}</LegendText>
-          </div>
+          <PaletteItem v-for="i in 11" :key="i" :distance="i - 6" :hue-rotation="hueRotation" palette="monochromatic" />
         </div>
       </article>
 
@@ -35,14 +28,7 @@
           The colors are similar and create a cohesive look.
         </Instruction>
         <div class="grid grid-rows-3 flex-1">
-          <div
-            class="flex p-2 justify-center items-center"
-            v-for="i in 3"
-            :style="{  background: analogousBgr(i) }"
-            :key="i"
-          >
-            <LegendText>{{ analogousBgr(i) }}</LegendText>
-          </div>
+          <PaletteItem v-for="i in 3" :key="i" :distance="i - 2" palette="analogous" />
         </div>
       </article>
 
@@ -54,14 +40,7 @@
           Three colors that are evenly spaced around the color wheel, forming a balanced triangle.
         </Instruction>
         <div class="grid grid-rows-3 flex-1">
-          <div
-            v-for="i in 3"
-            :key="i"
-            :style="{  background: triadicBgr(i) }"
-            class="flex p-2 justify-center items-center"
-          >
-            <LegendText>{{ triadicBgr(i) }}</LegendText>
-          </div>
+          <PaletteItem v-for="i in 3" :key="i" :distance="i - 2" palette="triadic" />
         </div>
       </article>
 
@@ -73,14 +52,7 @@
           Four colors evenly divided around the color wheel, creating a vibrant palette with no clear dominant value.
         </Instruction>
         <div class="grid grid-rows-4 flex-1">
-          <div
-            v-for="i in 4"
-            :key="i"
-            :style="{  background: tetradicBgr(i) }"
-            class="flex p-2 justify-center items-center"
-          >
-            <LegendText>{{ tetradicBgr(i) }}</LegendText>
-          </div>
+          <PaletteItem v-for="i in 4" :key="i" :distance="i - 1" palette="tetradic" />
         </div>
       </article>
     </div>
@@ -88,24 +60,10 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, type Ref } from 'vue'
+import { ref } from 'vue'
+
 import Instruction from '@/components/Instruction.vue'
-import LegendText from '@/components/LegendText.vue'
+import PaletteItem from '@/components/PaletteItem.vue'
 
-const brand = inject<Ref<string>>('brand')
 const hueRotation = ref(false)
-
-const monochromaticBgr = (i: number, h = false) => {
-  const lightAdjustment = ((i - 6) * .1).toFixed(1)
-
-  return h
-    ? `oklch(from ${brand?.value} calc(l + ${lightAdjustment}) c calc(h + ${(i - 6) * 10}))`
-    : `oklch(from ${brand?.value} calc(l + ${lightAdjustment}) c h)`
-}
-
-const analogousBgr = (i: number) => `oklch(from ${brand?.value} l c calc(h + ${(i - 2) * 45}))`
-
-const triadicBgr = (i: number) => `oklch(from ${brand?.value} l c calc(h + ${(i - 2) * 120}))`
-
-const tetradicBgr = (i: number) => `oklch(from ${brand?.value} l c calc(h + ${(i - 1) * 90}))`
 </script>
