@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+ @apply w-full h-full relative;
+}
+
+h3 {
+  @apply text-3xl mb-4;
+}
+
+.sample {
+  @apply flex flex-1 items-center justify-center border border-gray-100 rounded-lg shadow-lg;
+}
+
+a {
+  @apply text-blue-500 border-b-2 border-pink-200;
+
+  &:hover {
+    @apply text-blue-700 border-pink-500;
+  }
+}
+
+label {
+  @apply cursor-pointer;
+}
