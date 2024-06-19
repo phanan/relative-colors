@@ -9,6 +9,7 @@
         Inversion & Complement
       </button>
       <button :class="component === 'contrast' && 'active'" @click="component = 'contrast'">Contrast</button>
+      <button :class="component === 'saturation' && 'active'" @click="component = 'saturation'">Saturation</button>
       <button :class="component === 'palettes' && 'active'" @click="component = 'palettes'">Palettes</button>
     </div>
 
@@ -27,6 +28,7 @@
       <Brightness v-if="component === 'brightness'" />
       <Inversion v-if="component === 'inversion'" />
       <Contrast v-if="component === 'contrast'" />
+      <Saturation v-if="component === 'saturation'" />
       <Palettes v-if="component === 'palettes'" />
     </div>
   </div>
@@ -40,8 +42,9 @@ import Brightness from '@/components/Brightness.vue'
 import Inversion from '@/components/Inversion.vue'
 import Contrast from '@/components/Contrast.vue'
 import Palettes from '@/components/Palettes.vue'
+import Saturation from '@/components/Saturation.vue'
 
-const component = ref<'basics' | 'brightness' | 'inversion' | 'contrast' | 'palettes' | null>(null)
+const component = ref<'basics' | 'brightness' | 'inversion' | 'contrast' | 'palettes' | 'saturation' | null>(null)
 const primary = ref('#ffffff')
 const showLegend = ref(false)
 
