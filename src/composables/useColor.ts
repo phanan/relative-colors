@@ -4,7 +4,7 @@ import { computed } from 'vue'
 export const useColor = (color: Ref<string>) => {
   const isDark = computed(() => {
     let r, g, b, hsp, c;
-    c = +("0x" + color.value.slice(1).replace(color.value.length < 5 && /./g, '$&$&')) // @ts-ignore
+    c = +("0x" + color.value.slice(1).replace(color.value.length < 5 ? /./g : '', '$&$&'))
 
     r = c >> 16;
     g = c >> 8 & 255;
