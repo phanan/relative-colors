@@ -1,5 +1,5 @@
 <template>
-  <div class="p-10">
+  <main class="p-4">
     <div class="space-x-1 pl-4 relative z-10">
       <button :class="component === 'basics' && 'active'" @click="component = 'basics'">The Basics</button>
       <button :class="component === 'brightness' && 'active'" @click="component = 'brightness'">
@@ -18,9 +18,9 @@
         Your browser does not support relative color syntax.
       </div>
 
-      <div v-if="component" class="mb-4 flex px-4 py-3 border border-fuchsia-300 bg-fuchsia-50 rounded-md shadow justify-between">
+      <div v-if="component" class="mb-4 flex px-4 py-3 gap-5 border border-fuchsia-300 bg-fuchsia-50 rounded-md shadow">
         <label class="inline-flex items-center gap-1">
-          <span>Pick the origin color:</span>
+          <span>Origin color:</span>
           <input v-model="origin" type="color" />
           <span class="font-mono ml-2">{{ origin }}</span>
         </label>
@@ -36,7 +36,11 @@
       <Saturation v-if="component === 'saturation'" />
       <Palettes v-if="component === 'palettes'" />
     </div>
-  </div>
+  </main>
+
+  <footer class="text-center">
+    <a href="https://github.com/phanan/relative-colors">GitHub</a>
+  </footer>
 </template>
 
 <script setup lang="ts">
