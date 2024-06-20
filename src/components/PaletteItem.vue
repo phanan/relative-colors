@@ -15,7 +15,7 @@ const props = defineProps<{
   distance: number
 }>()
 
-const primary = inject<Ref<string>>('primary')
+const origin = inject<Ref<string>>('origin')
 
 const { palette, hueRotation, distance } = toRefs(props)
 
@@ -24,19 +24,19 @@ const background = computed(() => {
 
   switch (palette.value) {
     case 'analogous':
-      color = `oklch(from ${primary!.value} l c calc(h + ${distance.value * 45}))`
+      color = `oklch(from ${origin!.value} l c calc(h + ${distance.value * 45}))`
       break
     case 'triadic':
-      color = `oklch(from ${primary!.value} l c calc(h + ${distance.value * 120}))`
+      color = `oklch(from ${origin!.value} l c calc(h + ${distance.value * 120}))`
       break
     case 'tetradic':
-      color = `oklch(from ${primary!.value} l c calc(h + ${(distance.value - 1) * 90}))`
+      color = `oklch(from ${origin!.value} l c calc(h + ${(distance.value - 1) * 90}))`
       break
     default:
       const lightAdjustment = (distance.value * .1).toFixed(1)
       color = hueRotation.value
-        ? `oklch(from ${primary!.value} calc(l + ${lightAdjustment}) c calc(h + ${distance.value * 10}))`
-        : `oklch(from ${primary!.value} calc(l + ${lightAdjustment}) c h)`
+        ? `oklch(from ${origin!.value} calc(l + ${lightAdjustment}) c calc(h + ${distance.value * 10}))`
+        : `oklch(from ${origin!.value} calc(l + ${lightAdjustment}) c h)`
       break
   }
 

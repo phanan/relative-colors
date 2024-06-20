@@ -14,13 +14,18 @@
     </div>
 
     <div class="p-4 border border-gray-400 -mt-px rounded">
-      <div v-if="component" class="mb-4 flex gap-4">
+      <div class="unsupported mb-4 bg-red-700 text-white px-4 py-2 rounded-md shadow">
+        Your browser does not support relative color syntax.
+      </div>
+
+      <div v-if="component" class="mb-4 flex px-4 py-3 border border-fuchsia-300 bg-fuchsia-50 rounded-md shadow justify-between">
         <label class="inline-flex items-center gap-1">
-          <input v-model="primary" type="color" />
-          <span class="font-mono ml-2">{{ primary }}</span>
+          <span>Pick the origin color:</span>
+          <input v-model="origin" type="color" />
+          <span class="font-mono ml-2">{{ origin }}</span>
         </label>
         <label class="inline-flex items-center gap-1">
-          <input v-model="showLegend" type="checkbox" /> Legends pls
+          <input v-model="showLegend" type="checkbox" switch /> Show derived color code
         </label>
       </div>
 
@@ -45,10 +50,10 @@ import Palettes from '@/components/Palettes.vue'
 import Saturation from '@/components/Saturation.vue'
 
 const component = ref<'basics' | 'brightness' | 'inversion' | 'contrast' | 'palettes' | 'saturation' | null>(null)
-const primary = ref('#ffffff')
+const origin = ref('#663399')
 const showLegend = ref(false)
 
-provide('primary', primary)
+provide('origin', origin)
 provide('show-legend', showLegend)
 </script>
 
@@ -58,6 +63,12 @@ button {
 
   &.active {
     @apply bg-white text-gray-950 border-b-white;
+  }
+}
+
+@supports (color: hsl(from white h s l)) {
+  .unsupported {
+    display: none;
   }
 }
 </style>

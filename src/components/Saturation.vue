@@ -24,9 +24,9 @@ import { computed, inject, type Ref, ref } from 'vue'
 import LegendText from '@/components/LegendText.vue'
 
 const saturation = ref(1)
-const primary = inject<Ref<string>>('primary')
+const origin = inject<Ref<string>>('origin')
 
-const background = computed(() => `hsl(from ${primary?.value} h calc(s * ${saturation.value}) l)`)
+const background = computed(() => `hsl(from ${origin?.value} h calc(s * ${saturation.value}) l)`)
 </script>
 
 <style scoped>

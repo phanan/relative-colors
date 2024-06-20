@@ -1,11 +1,11 @@
 <template>
-  <span
-    class="px-3 py-1 bg-white/90 rounded-full font-mono text-sm shadow shadow-black/20
+  <code
+    class="inline-block px-3 py-1 bg-white/90 rounded-full text-sm shadow shadow-black/20
     transition duration-200 ease-in-out hover:scale-110"
     :class="showLegend ? 'opacity-100' : 'opacity-0'"
   >
     <slot/>
-  </span>
+  </code>
 </template>
 
 <script setup lang="ts">
